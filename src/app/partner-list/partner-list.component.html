@@ -1,0 +1,22 @@
+<div class="row">
+    <h2 class="col-sm row-div" >Pregled partnera</h2>
+    <mat-checkbox
+    style="text-align: right;" 
+    class="col-sm row-div" 
+    #vrednost (change)="vrednost.value = !vrednost.value"
+    labelPosition="before">Prikazi Sve
+    </mat-checkbox>
+</div>
+<!-- *ngIf="!vrednost.value ? partner.active : true " -->
+<mat-selection-list color="blue">
+    <ng-container *ngFor="let partner of partners">
+    <mat-list-option   *ngIf="!vrednost.value ? partner.active : true "  (click)="openDialog(partner)" disableRipple="false" [selected]="partner.active" disabled="true">
+        {{ partner.name }}
+        <p>iD : {{partner.id}}</p>
+        <mat-divider></mat-divider>
+    </mat-list-option>
+    </ng-container>
+</mat-selection-list>
+<button mat-fab color="primary" (click)="openDialogInsert()">
+    <mat-icon>add</mat-icon>
+</button>
